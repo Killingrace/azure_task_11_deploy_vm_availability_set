@@ -1,5 +1,5 @@
 $location = "polandcentral"
-$resourceGroupName = "mate-azure-task-11"
+$resourceGroupName = "mate-resources"
 $networkSecurityGroupName = "defaultnsg"
 $virtualNetworkName = "vnet"
 $subnetName = "default"
@@ -36,7 +36,7 @@ $commonValues = @{
     VirtualNetworkName = $virtualNetworkName
     SecurityGroupName = $networkSecurityGroupName
     SshKeyName = $sshKeyName
-    AvailabilitySetName = $availabilitySetName
+    availabilitySet = @{ id = $availabilitySet.Id }
 }
 
 for (($zone = 1); ($zone -le 2); ($zone++) ) {
