@@ -1,4 +1,4 @@
-$location = "polandcentral"
+$location = "uksouth"
 $resourceGroupName = "mate-resources"
 $networkSecurityGroupName = "defaultnsg"
 $virtualNetworkName = "vnet"
@@ -25,7 +25,7 @@ New-AzVirtualNetwork -Name $virtualNetworkName -ResourceGroupName $resourceGroup
 
 New-AzSshKey -Name $sshKeyName -ResourceGroupName $resourceGroupName -PublicKey $sshKeyPublicKey
 
-New-AzAvailabilitySet -Name $availabilitySetName -ResourceGroupName $resourceGroupName -Location $location -Sku aligned -PlatformUpdateDomainCount 2 -PlatformFaultDomainCount 2
+$availabilitySet = New-AzAvailabilitySet -Name $availabilitySetName -ResourceGroupName $resourceGroupName -Location $location -Sku aligned -PlatformUpdateDomainCount 2 -PlatformFaultDomainCount 2
 
 $commonValues = @{
     ResourceGroupName = $resourceGroupName
