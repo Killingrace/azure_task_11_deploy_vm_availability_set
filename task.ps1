@@ -1,5 +1,5 @@
-$location = "uksouth"
-$resourceGroupName = "mate-resources"
+$location = "polandcentral"
+$resourceGroupName = "mate-azure-task-11"
 $networkSecurityGroupName = "defaultnsg"
 $virtualNetworkName = "vnet"
 $subnetName = "default"
@@ -25,7 +25,20 @@ New-AzVirtualNetwork -Name $virtualNetworkName -ResourceGroupName $resourceGroup
 
 New-AzSshKey -Name $sshKeyName -ResourceGroupName $resourceGroupName -PublicKey $sshKeyPublicKey
 
-$availabilitySet = New-AzAvailabilitySet -Name $availabilitySetName -ResourceGroupName $resourceGroupName -Location $location -Sku aligned -PlatformUpdateDomainCount 2 -PlatformFaultDomainCount 2
+# Luke asked for changes that dont work
+# $commonValues = @{
+#     ResourceGroupName = $resourceGroupName
+#     Location = $location
+#     image = $vmImage
+#     size = $vmSize
+#     SubnetName = $subnetName
+#     VirtualNetworkName = $virtualNetworkName
+#     SecurityGroupName = $networkSecurityGroupName
+#     SshKeyName = $sshKeyName
+#     availabilitySet = @{ id = $availabilitySet.Id }
+# }
+
+New-AzAvailabilitySet -Name $availabilitySetName -ResourceGroupName $resourceGroupName -Location $location -Sku aligned -PlatformUpdateDomainCount 2 -PlatformFaultDomainCount 2
 
 $commonValues = @{
     ResourceGroupName = $resourceGroupName
@@ -36,7 +49,7 @@ $commonValues = @{
     VirtualNetworkName = $virtualNetworkName
     SecurityGroupName = $networkSecurityGroupName
     SshKeyName = $sshKeyName
-    availabilitySet = @{ id = $availabilitySet.Id }
+    AvailabilitySetName = $availabilitySetName
 }
 
 for (($zone = 1); ($zone -le 2); ($zone++) ) {
